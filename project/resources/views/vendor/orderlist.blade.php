@@ -46,7 +46,7 @@
                                 @endif
                                     <td><a target="_blank" href="{{url('/product')}}/{{$order->productid}}/{{str_replace(' ','-',strtolower(\App\Product::findOrFail($order->productid)->title))}}">{{\App\Product::findOrFail($order->productid)->title}}</a></td>
                                     <td>{{$order->quantity}}</td>
-                                    <td>${{$order->cost}}</td>
+                                    <td>{{$order->cost}}{{env('CURRENCY')}}</td>
                                     <td>{{$order->size }}</td>
                                     <td>
                                         ​<span class="dropdown">

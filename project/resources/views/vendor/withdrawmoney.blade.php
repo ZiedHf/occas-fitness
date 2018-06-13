@@ -122,7 +122,7 @@
 
                                     @if($settings[0]->withdraw_fee > 0)
                                         <span class="help-block">
-                                <strong>Withdraw Fee ${{ $settings[0]->withdraw_fee }} and {{ $settings[0]->withdraw_charge }}% will deduct from your account.</strong>
+                                <strong>Withdraw Fee {{ $settings[0]->withdraw_fee }}{{env('CURRENCY')}} and {{ $settings[0]->withdraw_charge }}% will deduct from your account.</strong>
                             </span>
                                     @endif
                                 </div>

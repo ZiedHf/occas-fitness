@@ -15,7 +15,7 @@
                             <i class="fa fa-usd fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="text-total">${{round(Auth::user()->current_balance,2)}}</div>
+                            <div class="text-total">{{round(Auth::user()->current_balance,2)}}{{env('CURRENCY')}}</div>
                             <p class="titles">Current Balance!</p>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                         <i class="fa fa-download fa-5x"></i>
                     </div>
                     <div class="col-xs-9 text-right">
-                        <div class="text-total">${{round(\App\OrderedProducts::where('vendorid',Auth::user()->id)->where('paid','yes')->where('status','completed')->sum('cost'),2)}}</div>
+                        <div class="text-total">{{round(\App\OrderedProducts::where('vendorid',Auth::user()->id)->where('paid','yes')->where('status','completed')->sum('cost'),2)}}{{env('CURRENCY')}}</div>
                         <p class="titles">Total Earnings!</p>
                     </div>
                 </div>

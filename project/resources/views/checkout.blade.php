@@ -92,7 +92,7 @@
                                     <input type="hidden" name="cmd" value="_xclick" />
                                     <input type="hidden" name="no_note" value="1" />
                                     <input type="hidden" name="lc" value="UK" />
-                                    <input type="hidden" name="currency_code" value="USD" />
+                                    <input type="hidden" name="currency_code" value="{{env('CURRENCY_CODE')}}" />
                                     <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" />
                                 </div>
                                 <button type="submit" class="button style-10"> Order Now</button>
@@ -123,11 +123,11 @@
                                 <table class="table">
                                     {{--<tr>--}}
                                         {{--<td><strong>Shipping Cost:</strong></td>--}}
-                                        {{--<td width="20%"><strong>${{round($settings[0]->shipping_cost,2)}}</strong></td>--}}
+                                        {{--<td width="20%"><strong>{{round($settings[0]->shipping_cost,2)}}{{env('CURRENCY')}}</strong></td>--}}
                                     {{--</tr>--}}
                                     <tr>
                                         <td><h3 class="pricing-count" style="margin: 0">Total Cost:</h3></td>
-                                        <td width="30%"><h3 class="pricing-count" style="margin: 0">${{round($total,2)}}</h3></td>
+                                        <td width="30%"><h3 class="pricing-count" style="margin: 0">{{round($total,2)}}{{env('CURRENCY')}}</h3></td>
                                     </tr>
                                 </table>
                             </div>

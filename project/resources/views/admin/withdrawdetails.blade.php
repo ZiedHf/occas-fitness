@@ -28,11 +28,11 @@
                             </tr>
                             <tr>
                                 <td width="30%" style="text-align: right;"><strong>Withdraw Amount:</strong></td>
-                                <td><strong style="color:green">${{$withdraw->amount}}</strong></td>
+                                <td><strong style="color:green">{{$withdraw->amount}}{{env('CURRENCY')}}</strong></td>
                             </tr>
                             <tr>
                                 <td width="30%" style="text-align: right;"><strong>Withdraw Charge:</strong></td>
-                                <td><strong style="color:green">${{$withdraw->fee}}</strong></td>
+                                <td><strong style="color:green">{{$withdraw->fee}}{{env('CURRENCY')}}</strong></td>
                             </tr>
                             <tr>
                                 <td width="30%" style="text-align: right;"><strong>Withdraw Process Date:</strong></td>

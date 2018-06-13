@@ -45,7 +45,7 @@
                                     @else
                                         <td>{{$withdraw->iban}}</td>
                                     @endif
-                                    <td>${{$withdraw->amount}}</td>
+                                    <td>{{$withdraw->amount}}{{env('CURRENCY')}}</td>
                                     <td>{{ucfirst($withdraw->status)}}</td>
                                 </tr>
                             @endforeach

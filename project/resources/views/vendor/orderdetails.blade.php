@@ -53,7 +53,7 @@
                             </tr>
                             <tr>
                                 <td width="30%" style="text-align: right;"><strong>Total Cost:</strong></td>
-                                <td>${{$order->pay_amount}}</td>
+                                <td>{{$order->pay_amount}}{{env('CURRENCY')}}</td>
                             </tr>
                             <tr>
                                 <td width="30%" style="text-align: right;"><strong>Ordered Date:</strong></td>

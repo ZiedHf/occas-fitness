@@ -37,8 +37,8 @@
                                             <h1>{{$product->title}}</h1>
                                         </a>
                                         <div class="pull-left">
-                                            <span class="price-old">${{$product->previous_price}}</span>
-                                            <span class="price-new">${{$product->price}}</span>
+                                            <span class="price-old">{{$product->previous_price}}{{env('CURRENCY')}}</span>
+                                            <span class="price-new">{{$product->price}}{{env('CURRENCY')}}</span>
                                         </div>
                                         <div class="pull-right">
                                             <span class="review">

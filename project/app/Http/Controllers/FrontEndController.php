@@ -379,10 +379,10 @@ class FrontEndController extends Controller
                                         </a>
                                         <div class="pull-left">';
                 if ($product->previous_price != "") {
-                    $res .= '<span class="price-old">$' . $product->previous_price . '</span>';
+                    $res .= '<span class="price-old">' . $product->previous_price . env('CURRENCY') . '</span>';
                 }
                 $res .= '
-                         <span class="price-new">$' . $product->price . '</span>
+                         <span class="price-new">' . $product->price . env('CURRENCY') . '</span>
                         </div>
                             <div class="pull-right">
                                 <span class="review">';
@@ -460,10 +460,10 @@ class FrontEndController extends Controller
                                         </a>
                                         <div class="pull-left">';
                 if ($product->previous_price != "") {
-                    $res .= '<span class="price-old">$' . $product->previous_price . '</span>';
+                    $res .= '<span class="price-old">' . $product->previous_price . env('CURRENCY') . '</span>';
                 }
                 $res .= '
-                         <span class="price-new">$' . $product->price . '</span>
+                         <span class="price-new">' . $product->price . env('CURRENCY') . '</span>
                         </div>
                             <div class="pull-right">
                                 <span class="review">';

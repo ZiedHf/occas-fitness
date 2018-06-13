@@ -216,7 +216,7 @@
 
             </div>
             <div class="summary">
-                <div class="grandtotal">Total <span id="grandttl">$0.00</span></div>
+                <div class="grandtotal">Total <span id="grandttl">0.00{{env('CURRENCY')}}</span></div>
             </div>
             <div class="cart-buttons">
                 <div class="column">
@@ -321,7 +321,7 @@
                     title = title.split(' ').join('-');
                     url = '{{url('/product')}}/'+data.product+'/'+title;
                     total = total + data.cost;
-                    $("#goCart").append('<div class="cart-entry"> <div class="content"> <a class="title" href="'+url+'">'+data.title+'</a> <div class="quantity">Quantity: '+data.quantity+'</div><div class="price">$'+data.cost+'</div></div><div class="button-x"><i class="fa fa-close" onclick=" getDelete('+data.product+')"></i></div></div>');
+                    $("#goCart").append('<div class="cart-entry"> <div class="content"> <a class="title" href="'+url+'">'+data.title+'</a> <div class="quantity">Quantity: '+data.quantity+'</div><div class="price">'+data.cost+'€</div></div><div class="button-x"><i class="fa fa-close" onclick=" getDelete('+data.product+')"></i></div></div>');
                     $('#grandttl').html('$'+total.toFixed(2));
                     $('#carttotal').html('$'+total.toFixed(2));
                     $('#emptycart').html('');
@@ -350,7 +350,7 @@
                     title = title.split(' ').join('-');
                     url = '{{url('/product')}}/'+data.product+'/'+title;
                     total = total + data.cost;
-                    $("#goCart").append('<div class="cart-entry"> <div class="content"> <a class="title" href="'+url+'">'+data.title+'</a> <div class="quantity">Quantity: '+data.quantity+'</div><div class="price">$'+data.cost+'</div></div><div class="button-x"><i class="fa fa-close" onclick=" getDelete('+data.product+')"></i></div></div>');
+                    $("#goCart").append('<div class="cart-entry"> <div class="content"> <a class="title" href="'+url+'">'+data.title+'</a> <div class="quantity">Quantity: '+data.quantity+'</div><div class="price">'+data.cost+'€</div></div><div class="button-x"><i class="fa fa-close" onclick=" getDelete('+data.product+')"></i></div></div>');
                     $('#grandttl').html('$'+total.toFixed(2));
                     $('#carttotal').html('$'+total.toFixed(2));
                     $('#grandtotal').html('$'+total.toFixed(2));

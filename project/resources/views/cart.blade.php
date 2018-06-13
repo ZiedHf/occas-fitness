@@ -42,7 +42,7 @@
                                     </div>
                                 </div>
                             </td>
-                            <td id="price{{$cart->product}}" class="prices">${{\App\Product::findOrFail($cart->product)->price}}</td>
+                            <td id="price{{$cart->product}}" class="prices">{{\App\Product::findOrFail($cart->product)->price}}{{env('CURRENCY')}}</td>
                             <td>
                                 <div class="quantity-selector detail-info-entry">
                                     <div class="entry number-minus" id="minus{{$cart->product}}">&nbsp;</div>
@@ -50,7 +50,7 @@
                                     <div class="entry number-plus" id="plus{{$cart->product}}">&nbsp;</div>
                                 </div>
                             </td>
-                            <td><div class="subtotal" id="subtotal{{$cart->product}}">${{$cart->cost}}</div></td>
+                            <td><div class="subtotal" id="subtotal{{$cart->product}}">{{$cart->cost}}{{env('CURRENCY')}}</div></td>
                             <td><a class="remove-button" onclick="getDelete({{$cart->product}})"><i class="fa fa-times"></i></a></td>
 
                             <form id="citem{{$cart->product}}">
@@ -84,7 +84,7 @@
                 <div class="cart-submit-buttons-box">
                     <div class="row" style="margin: 0">
                     <div class="cart-summary-box pull-right col-md-6" style="margin: 0">
-                        <div class="grand-total">Total <span id="grandtotal">${{round($sum,2)}}</span></div>
+                        <div class="grand-total">Total <span id="grandtotal">{{env('CURRENCY')}}{{round($sum,2)}}</span></div>
                         <a class="col-md-6 pull-right button style-10" href="{{route('user.checkout')}}">Proceed To Checkout</a>
                         <a class="col-md-5 pull-right button style-10" href="{{url('/')}}">Continue Shopping</a>
 

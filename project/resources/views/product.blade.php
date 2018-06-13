@@ -100,10 +100,10 @@
                             <div class="product-description detail-info-entry">{{substr(strip_tags($productdata->description), 0, 600)}}... <a id="showmore">Show More</a></div>
                             <div class="price detail-info-entry">
                                 @if($productdata->previous_price != "")
-                                    <div class="prev">${{$productdata->previous_price}}</div>
+                                    <div class="prev">{{$productdata->previous_price}}{{env('CURRENCY')}}</div>
                                 @else
                                 @endif
-                                <div class="current">$<span id="price">{{$productdata->price}}</span></div>
+                                <div class="current"><span id="price">{{$productdata->price}}</span>{{env('CURRENCY')}}</div>
                             </div>
                             @if($productdata->sizes != null)
                             <div class="size-selector detail-info-entry">
@@ -300,10 +300,10 @@
                                         </a>
                                         <div class="pull-left">
                                             @if($product->previous_price != "")
-                                                <span class="price-old">${{$product->previous_price}}</span>
+                                                <span class="price-old">{{$product->previous_price}}{{env('CURRENCY')}}</span>
                                             @else
                                             @endif
-                                            <span class="price-new">${{$product->price}}</span>
+                                            <span class="price-new">{{$product->price}}{{env('CURRENCY')}}</span>
                                         </div>
                                         <div class="pull-right">
                                                             <span class="review">

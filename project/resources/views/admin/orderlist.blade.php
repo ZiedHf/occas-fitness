@@ -48,7 +48,7 @@
                                     <td>{{$order->customer_email}}</td>
                                     <td>{{$order->customer_name}}</td>
                                     <td>{{array_sum($order->quantities)}}</td>
-                                    <td>${!! $order->pay_amount !!}</td>
+                                    <td>{!! $order->pay_amount !!}{{env('CURRENCY')}}</td>
                                     <td>{{$order->method}}</td>
 
                                     <td>

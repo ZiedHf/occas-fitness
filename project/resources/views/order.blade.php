@@ -36,7 +36,7 @@
                                 <input type="hidden" name="cmd" value="_xclick" />
                                 <input type="hidden" name="no_note" value="1" />
                                 <input type="hidden" name="lc" value="UK" />
-                                <input type="hidden" name="currency_code" value="USD" />
+                                <input type="hidden" name="currency_code" value="{{env('CURRENCY_CODE')}}" />
                                 <input type="hidden" name="customer" value="1" />
                                 <input type="hidden" name="bn" value="PP-BuyNowBF:btn_buynow_LG.gif:NonHostedGuest" />
                                 <button type="submit" class="genius-btn"><i class="fa fa-paypal fa-fw"></i> Checkout</button>
@@ -47,7 +47,7 @@
                             <h4>ORDER DETAILS</h4>
 
                             {{--<h3>{{$pricing->title}}</h3>--}}
-                            {{--<h3 class="pricing-count" style="margin: 0">${{$pricing->cost}}/Mo</h3>--}}
+                            {{--<h3 class="pricing-count" style="margin: 0">{{$pricing->cost}}{{env('CURRENCY')}}/Mo</h3>--}}
                             {{--<div class="pricing-list">--}}
                                 {{--<ul>--}}
                                     {{--@foreach($pricing->options as $option)--}}

@@ -10,7 +10,7 @@
                 @foreach($services as $service)
                 <div class="col-md-4 text-center services">
                     <div class="single-box">
-                        <h1>{{$service->cost}}$</h1>
+                        <h1>{{$service->cost}}{{env('CURRENCY')}}</h1>
                         <p>{!! $service->details !!}</p>
 
                         <a href="{{url('/services/order')}}/{{$service->id}}" class="genius-btn">
