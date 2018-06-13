@@ -159,7 +159,7 @@
                                             </div>
                                         </div>
                                         <div class="item form-group">
-                                            <label class="control-label col-md-4 col-sm-4 col-xs-12" for="title"> Withdraw Fee(USD) <span class="required">*</span>
+                                            <label class="control-label col-md-4 col-sm-4 col-xs-12" for="title"> Withdraw Fee({{env('CURRENCY_CODE')}}) <span class="required">*</span>
                                             <p class="small-label">Static Withdraw Fee</p>
                                             </label>
                                             <div class="col-md-6 col-sm-6 col-xs-12">

@@ -183,6 +183,17 @@
                     <!-- Tab panes -->
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="description">
+                            <div class="row">
+                              @if(isset($productdata->title_secondary))
+                              <p class="small-label">Secondary Title : {{$productdata->title_secondary}}</p>
+                              @endif
+                              @if(isset($productdata->model))
+                              <p class="small-label">Model : {{$productdata->model}}</p>
+                              @endif
+                              @if(isset($productdata->mark))
+                              <p class="small-label">Mark : {{$productdata->mark}}</p>
+                              @endif
+                            </div>
                             {!! $productdata->description !!}
                         </div>
                         <div role="tabpanel" class="tab-pane" id="policy">

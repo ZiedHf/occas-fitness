@@ -32,6 +32,29 @@
                             </div>
 
                             <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Product Name
+                                    <p class="small-label">(Second Language)</p>
+                                </label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="name_secondary" class="form-control col-md-7 col-xs-12" name="title_secondary" value="{{$product->title_secondary}}" placeholder="e.g Attractive Jeans élégant pour les femmes" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Model</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="model" class="form-control col-md-7 col-xs-12" name="model" value="{{$product->model}}" placeholder="e.g Jeans" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Mark</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <input id="mark" class="form-control col-md-7 col-xs-12" name="mark" value="{{$product->mark}}" placeholder="e.g Awesome Clothes" type="text">
+                                </div>
+                            </div>
+
+                            <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Main Category<span class="required">*</span>
 
                                 </label>
@@ -164,7 +187,7 @@
 
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Product Current Price<span class="required">*</span>
-                                    <p class="small-label">(In USD)</p>
+                                    <p class="small-label">(In {{env('CURRENCY_CODE')}})</p>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input class="form-control col-md-7 col-xs-12" name="price" value="{{$product->price}}" placeholder="e.g 20" pattern="[0-9]+(\.[0-9]{0,2})?%?"
@@ -174,7 +197,7 @@
 
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Product Previous Price<span class="required">*</span>
-                                    <p class="small-label">(In USD, Leave Blank if not Required)</p>
+                                    <p class="small-label">(In {{env('CURRENCY_CODE')}}, Leave Blank if not Required)</p>
                                 </label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input class="form-control col-md-7 col-xs-12" name="previous_price" value="{{$product->previous_price}}" placeholder="e.g 25" pattern="[0-9]+(\.[0-9]{0,2})?%?"

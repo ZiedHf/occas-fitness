@@ -248,7 +248,7 @@ class FrontEndController extends Controller
         $relateds = Product::where('status','1')->whereRaw('FIND_IN_SET(?,category)', [$productdata->category[0]])
             ->take(8)->get();
         $gallery = Gallery::where('productid',$id)->get();
-
+        
         $reviews = Review::where('productid',$id)->get();
         return view('product', compact('productdata','gallery','reviews','relateds'));
     }

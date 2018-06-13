@@ -66,7 +66,7 @@ class StripeController extends Controller
 
 	     		$charge = $stripe->charges()->create([
 	     			'card' => $token['id'],
-	     			'currency' => 'USD',
+	     			'currency' => env('CURRENCY_CODE'),
 	     			'amount' => $item_amount,
 	     			'description' => $item_name,
 	     			]);
