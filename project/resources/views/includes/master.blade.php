@@ -61,19 +61,19 @@
                             {{--<div class="middle-line"></div>--}}
                             <div class="line-entry">
                                 <div class="header-top-entry increase-icon-responsive open-search-popup">
-                                    <div class="title"><i class="fa fa-search"></i> <span>Search</span></div>
+                                    <div class="title"><i class="fa fa-search size-15"></i> <span>Search</span></div>
                                 </div>
-                                <a href="{{url('/cart')}}" class="header-top-entry open-cart-popup" id="notify"><div class="title"><i class="fa fa-shopping-cart"></i><!-- <span>My Cart</span> <b id="carttotal">$0.00</b> --></div></a>
+                                <a href="{{url('/cart')}}" class="header-top-entry open-cart-popup" id="notify"><div class="title"><i class="fa fa-shopping-cart size-15"></i><!-- <span>My Cart</span> <b id="carttotal">$0.00</b> --></div></a>
 
                                 <!-- <div class="header-top-entry increase-icon-responsive login">
                                     <a href="{{url('/vendor')}}" class="title"><i class="fa fa-group"></i> <span>Vendors</span></a>
                                 </div> -->
                                 <div class="header-top-entry increase-icon-responsive login">
-                                    <a href="{{url('user/login')}}" class="title"><i class="fa fa-user"></i> <!-- <span>My Account</span> --></a>
+                                    <a href="{{url('user/login')}}" class="title"><i class="fa fa-user size-15"></i> <!-- <span>My Account</span> --></a>
                                 </div>
 
                                 <div class="header-top-entry increase-icon-responsive ">
-                                    <a href="#" class="title"><i class="fa fa-globe"></i><!-- <span>My Account</span> --></a>
+                                    <a href="#" class="title"><i class="fa fa-envelope size-15"></i><!-- <span>My Account</span> --></a>
                                 </div>
 
                             </div>
@@ -162,16 +162,12 @@
         <h4 style=" text-decoration: underline;">A PROPOS DE NOUS</h4>
         <p>{!! $settings[0]->about !!}</p>
     </div>
-    <div class="col-md-3 address">
+    <!-- <div class="col-md-3 address">
         <h4 style=" text-decoration: underline;">PRODUITS</h4>
         <ul>
        
             </ul>
-        <!-- <p>Street Address: {{$settings[0]->address}}</p>
-        <p>Phone: {{$settings[0]->phone}}</p>
-        <p>Fax:  {{$settings[0]->fax}}</p>
-        <p>Email: {{$settings[0]->email}}</p> -->
-    </div>
+    </div> -->
     <div class="col-md-3">
         <h4 style=" text-decoration: underline;">AIDE</h4>
         <p>{!! $settings[0]->about !!}</p>
@@ -189,21 +185,18 @@
                             <a href="{{$sociallinks[0]->linkedin}}" class="linkedin"><i class="fa fa-linkedin"></i></a>
                         @endif
                     </div> -->
-    </div>      
+    </div>
+    <div class="col-md-3">
+        <h4 style=" text-decoration: underline;">COMPTE</h4>
+        <p>{!! $settings[0]->about !!}</p>
+    </div> 
     <div class="col-md-3 ">
-        <p><img style="width:50%" alt="" src="{{ URL::asset('assets/images/logo')}}/{{$settings[0]->logo}}"></p>
+        <p><img style="width:50%" alt="" src="{{ URL::asset('assets/images/logo')}}/footer-LogoOccas Fitness.png"></p>
         <p>Street Address: {{$settings[0]->address}}</p>
         <p>Phone: {{$settings[0]->phone}}</p>
         <p>Fax:  {{$settings[0]->fax}}</p>
         <p>Email: {{$settings[0]->email}}</p>
     </div>
-</div>
-<div class="row">    
-    <div class="col-md-3">
-        <h4 style=" text-decoration: underline;">COMPTE</h4>
-        <p>{!! $settings[0]->about !!}</p>
-        
-    </div> 
 </div>
       
 

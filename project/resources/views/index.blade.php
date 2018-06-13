@@ -2,8 +2,8 @@
 @section('content')
 
 
-<section class="go-slider">
-<div id="bootstrap-touch-slider" class="carousel bs-slider fade  control-round indicators-line" data-ride="carousel" data-pause="hover" data-interval="5000" >
+<section class="go-slider" style="height: 300px;">
+<div id="bootstrap-touch-slider" style="height: 300px;" class="carousel bs-slider fade  control-round indicators-line" data-ride="carousel" data-pause="hover" data-interval="5000" >
 
     <!-- Indicators -->
     {{--<ol class="carousel-indicators">--}}
@@ -17,7 +17,7 @@
     {{--</ol>--}}
 
     <!-- Wrapper For Slides -->
-    <div class="carousel-inner" role="listbox">
+    <div class="carousel-inner" style="overflow: initial;" role="listbox">
 
         @for ($i = 0; $i < count($sliders); $i++)
             @if($i == 0)
