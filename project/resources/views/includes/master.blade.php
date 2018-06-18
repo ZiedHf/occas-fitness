@@ -102,14 +102,16 @@
                                                 @foreach(\App\Category::where('mainid',$menu->id)->where('role','sub')->get() as $submenu)
                                                 <div class="product-column-entry">
                                                     <div class="submenu-list-title"><a href="{{url('/category')}}/{{$submenu->slug}}">{{$submenu->name}}</a><span class="toggle-list-button"></span></div>
-                                                    <div class="description toggle-list-container">
-                                                        <ul class="list-type-1">
-                                                            @foreach(\App\Category::where('subid',$submenu->id)->where('role','child')->get() as $childmenu)
-                                                                <li><a href="{{url('/category')}}/{{$childmenu->slug}}"><i class="fa fa-angle-right"></i>{{$childmenu->name}}</a></li>
-                                                            @endforeach
-                                                        </ul>
-                                                    </div>
-                                                    <div class="hot-mark yellow">sale</div>
+                                                    @if(count(\App\Category::where('subid',$submenu->id)->where('role','child')->get()))
+                                                      <div class="description toggle-list-container">
+                                                          <ul class="list-type-1">
+                                                              @foreach(\App\Category::where('subid',$submenu->id)->where('role','child')->get() as $childmenu)
+                                                                  <li><a href="{{url('/category')}}/{{$childmenu->slug}}"><i class="fa fa-angle-right"></i>{{$childmenu->name}}</a></li>
+                                                              @endforeach
+                                                          </ul>
+                                                      </div>
+                                                      <!-- <div class="hot-mark yellow">sale</div> -->
+                                                    @endif
                                                 </div>
                                                 @endforeach
                                             </div>

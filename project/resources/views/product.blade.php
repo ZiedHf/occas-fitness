@@ -299,8 +299,8 @@
                 @foreach($relateds as $product)
                     <div class="product">
                         <article class="col-item">
-                            <div class="photo">
-                                <a href="{{url('/product')}}/{{$product->id}}/{{str_replace(' ','-',strtolower($product->title))}}"> <img src="{{url('/assets/images/products')}}/{{$product->feature_image}}" class="img-responsive" style="height: 320px;" alt="Product Image" /> </a>
+                            <div class="photo photo-wrapper">
+                                <a href="{{url('/product')}}/{{$product->id}}/{{str_replace(' ','-',strtolower($product->title))}}"> <img src="{{url('/assets/images/products')}}/{{$product->feature_image}}" class="img-aspect-ratio" alt="Product Image" /> </a>
                             </div>
                             <div class="info">
                                 <div class="row">

@@ -201,13 +201,13 @@
 
 
 .slide-text {
-    top: 25%;
+    top: 5%;
     margin: auto;
     padding: 10px;
     position: absolute;
     text-align: left;
     padding: 10px 85px;
-    width: 50%;
+    /* width: 50%; */
 }
 
 

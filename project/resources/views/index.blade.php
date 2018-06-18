@@ -31,13 +31,16 @@
                         <div class="container">
                             <div class="row">
                                 <!-- Slide Text Layer -->
-                                <div class="slide-text {{$sliders[$i]->text_position}}">
-
-                                    <h1 data-animation="animated fadeInDown">{{$sliders[$i]->title}}</h1>
-                                    <p data-animation="animated fadeInUp">{{$sliders[$i]->text}}</p>
-
-                                </div>
-
+                                @if(isset($sliders[$i]->link) && ($sliders[$i]->link !== ''))
+                                  <a href="{{$sliders[$i]->link}}">
+                                @endif
+                                    <div class="slide-text {{$sliders[$i]->text_position}}">
+                                        <h1 data-animation="animated fadeInDown">{{$sliders[$i]->title}}</h1>
+                                        <p data-animation="animated fadeInUp">{{$sliders[$i]->text}}</p>
+                                    </div>
+                                @if(isset($sliders[$i]->link) && ($sliders[$i]->link !== ''))
+                                  </a>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -50,10 +53,16 @@
                     <img src="{{url('/')}}/assets/images/sliders/{{$sliders[$i]->image}}" alt="Bootstrap Touch Slider"  class="slide-image"/>
                     <div class="bs-slider-overlay"></div>
                     <!-- Slide Text Layer -->
-                    <div class="slide-text {{$sliders[$i]->text_position}}">
-                        <h1 data-animation="animated fadeInDown">{{$sliders[$i]->title}}</h1>
-                        <p data-animation="animated fadeInUp">{{$sliders[$i]->text}}</p>
-                    </div>
+                    @if(isset($sliders[$i]->link) && ($sliders[$i]->link !== ''))
+                      <a href="{{$sliders[$i]->link}}"> 
+                    @endif
+                        <div class="slide-text {{$sliders[$i]->text_position}}">
+                            <h1 data-animation="animated fadeInDown">{{$sliders[$i]->title}}</h1>
+                            <p data-animation="animated fadeInUp">{{$sliders[$i]->text}}</p>
+                        </div>
+                    @if(isset($sliders[$i]->link) && ($sliders[$i]->link !== ''))
+                      </a> 
+                    @endif
                 </div>
                 <!-- End of Slide -->
             @endif
