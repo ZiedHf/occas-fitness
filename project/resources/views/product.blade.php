@@ -73,6 +73,9 @@
                     <div class="col-sm-7 col-md-7 information-entry">
                         <div class="product-detail-box">
                             <h1 class="product-title">{{$productdata->title}}</h1>
+                            @if(isset($productdata->mark) && ($productdata->mark->image) && file_exists(base_path().'/../assets/images/marks/'.$productdata->mark->image))
+                              <img src="{{url('/assets/images/marks')}}/{{$productdata->mark->image}}" class="img-mark" title="{{$productdata->mark->name}}" />
+                            @endif
                             @if($productdata->owner != "admin")
 
                                 <strong class="">Vendor: <a href="{{url('/shop')}}/{{$productdata->vendorid}}/{{str_replace(' ','-',strtolower(\App\Vendors::findOrFail($productdata->vendorid)->shop_name))}}" target="_blank">{{\App\Vendors::findOrFail($productdata->vendorid)->shop_name}}</a></strong>
@@ -189,9 +192,6 @@
                               @endif
                               @if(isset($productdata->model))
                               <p class="small-label">Model : {{$productdata->model}}</p>
-                              @endif
-                              @if(isset($productdata->mark))
-                              <p class="small-label">Mark : {{$productdata->mark}}</p>
                               @endif
                             </div>
                             {!! $productdata->description !!}

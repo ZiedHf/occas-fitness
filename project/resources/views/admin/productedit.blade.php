@@ -47,12 +47,27 @@
                                 </div>
                             </div>
 
-                            <div class="item form-group">
+                            <!-- <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Mark</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <input id="mark" class="form-control col-md-7 col-xs-12" name="mark" value="{{$product->mark}}" placeholder="e.g Awesome Clothes" type="text">
                                 </div>
+                            </div> -->
+
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Mark</label>
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <select class="form-control" name="mark_id" id="mark">
+                                        <option value="">Select Mark</option>
+                                        @foreach($marks as $mark)
+                                            <option value="{{$mark->id}}" <?=$mark->id === $product->mark_id ? 'selected' : ''?>>
+                                              {{$mark->name}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
                             </div>
+
 
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Main Category<span class="required">*</span>

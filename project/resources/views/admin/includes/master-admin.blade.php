@@ -81,7 +81,9 @@
             <li>
                 <a href="{!! url('admin/products') !!}"><i class="fa fa-fw fa-shopping-cart"></i> Products</a>
             </li>
-
+            <li>
+                <a href="{!! url('admin/marks') !!}"><i class="fa fa-fw fa-bookmark"></i> Marks</a>
+            </li>
             <li>
                 <a href="{!! url('admin/withdraws') !!}"><i class="fa fa-fw fa-bank"></i> Withdraws</a>
             </li>

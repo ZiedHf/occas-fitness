@@ -134,6 +134,8 @@ Route::get('admin/products/pending/{id}', 'ProductController@pendingdetails');
 Route::get('admin/products/status/{id}/{status}', 'ProductController@status');
 Route::resource('/admin/products', 'ProductController');
 
+Route::resource('/admin/marks', 'MarkController');
+
 Route::get('admin/ads/status/{id}/{status}', 'AdvertiseController@status');
 
 Route::resource('/admin/ads', 'AdvertiseController');

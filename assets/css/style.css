@@ -1882,3 +1882,9 @@ div.photo-wrapper a img.img-aspect-ratio {
   max-width: initial;
   width: initial;
 }
+
+/* Mark image */
+img.img-mark{
+  max-height: 50px;
+  max-width: 100px;
+}

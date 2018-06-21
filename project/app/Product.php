@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = ['title', 'title_secondary', 'model', 'mark', 'category', 'description','sizes', 'price', 'previous_price', 'stock', 'feature_image', 'policy', 'featured', 'views', 'created_at', 'updated_at', 'status'];
+    protected $fillable = ['title', 'title_secondary', 'model', 'mark_id', 'category', 'description','sizes', 'price', 'previous_price', 'stock', 'feature_image', 'policy', 'featured', 'views', 'created_at', 'updated_at', 'status'];
 
     public static $withoutAppends = false;
 
@@ -19,5 +19,8 @@ class Product extends Model
         return explode(',',$category);
     }
 
-
+    public function mark()
+    {
+    	return $this->belongsTo('App\Mark');
+    }
 }

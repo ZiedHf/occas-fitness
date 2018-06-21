@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Category;
 use App\Gallery;
 use App\Product;
+use App\Mark;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -47,7 +48,8 @@ class ProductController extends Controller
     public function create()
     {
         $categories = Category::where('role','main')->get();
-        return view('admin.productadd',compact('categories'));
+        $marks = Mark::get();
+        return view('admin.productadd',compact('categories', 'marks'));
     }
 
     /**
@@ -116,7 +118,8 @@ class ProductController extends Controller
         $child = Category::where('role','child')->where('subid',$product->category[1])->get();
         $subs = Category::where('role','sub')->where('mainid',$product->category[0])->get();
         $categories = Category::where('role','main')->get();
-        return view('admin.productedit',compact('product','categories','child','subs'));
+        $marks = Mark::get();
+        return view('admin.productedit',compact('product','categories','child','subs', 'marks'));
     }
 
     /**
