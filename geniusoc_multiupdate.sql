@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 14, 2018 at 01:42 AM
+-- Generation Time: Jun 25, 2018 at 02:05 AM
 -- Server version: 5.7.22-0ubuntu18.04.1
 -- PHP Version: 7.1.17-1+ubuntu17.10.1+deb.sury.org+1
 
@@ -14,6 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `geniusoc_multiupdate`
@@ -194,7 +195,27 @@ INSERT INTO `counter` (`id`, `type`, `referral`, `total_count`, `todays_count`, 
 (8, 'browser', 'iPhone', 4, 0, NULL),
 (9, 'referral', 'www.google.com', 4, 0, NULL),
 (10, 'referral', 'com.google.android.gm', 8, 0, NULL),
-(11, 'browser', 'Ubuntu', 30, 0, NULL);
+(11, 'browser', 'Ubuntu', 126, 0, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `marks`
+--
+
+CREATE TABLE `marks` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `image` tinytext COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `marks`
+--
+
+INSERT INTO `marks` (`id`, `name`, `image`) VALUES
+(1, 'PUMA1', 'RGVsad-photo-boy.jpg'),
+(4, 'addd', 'wlEnpm.jpg');
 
 -- --------------------------------------------------------
 
@@ -295,10 +316,10 @@ CREATE TABLE `products` (
   `vendorid` int(11) DEFAULT NULL,
   `owner` enum('admin','vendor') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'admin',
   `title` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `title_secondary` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `title_secondary` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `category` varchar(255) CHARACTER SET latin1 NOT NULL,
-  `model` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `mark` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `model` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `mark_id` int(11) DEFAULT NULL,
   `description` text COLLATE utf8_unicode_ci,
   `price` float NOT NULL,
   `previous_price` float DEFAULT NULL,
@@ -320,42 +341,42 @@ CREATE TABLE `products` (
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`id`, `vendorid`, `owner`, `title`, `title_secondary`, `category`, `model`, `mark`, `description`, `price`, `previous_price`, `stock`, `sizes`, `feature_image`, `policy`, `featured`, `views`, `approved`, `created_at`, `updated_at`, `status`, `logomarque`, `categorisation`) VALUES
-(25, NULL, 'admin', 'Tesing Project Float', '', '17,,', '', '', 'sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf', 20.99, 25.99, 993, NULL, '1511805237mi.jpg', 'sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf', 1, 29, 'yes', '2017-05-30 14:56:16', '2018-02-06 08:35:29', 1, NULL, ''),
-(27, NULL, 'admin', 'Tapis de course', '', '17,43,', '', '', '<br>', 2000, 2000, 1, NULL, '15157814456_mxt4x_matrix.jpg', '<br>', 0, 15, 'yes', '2018-01-12 18:24:05', '2018-06-13 21:33:58', 1, NULL, ''),
-(29, NULL, 'admin', 'Cardio training', '', '35,45,55', '', '', 'testtesttest', 120, 150, 12, NULL, '1516126759f0876672-450x291.jpg', 'tetsttetst', 0, 1, 'yes', '2018-01-16 18:19:19', '2018-03-09 08:50:29', 1, NULL, ''),
-(30, NULL, 'admin', 'Presse Horizontale', '', '35,42,60', '', '', 'Charges guidées <br>', 1000, 1000, 1, NULL, '15162031101_SeatedLegPress_LS117_Lexco.jpeg', '<br>', 0, 0, 'yes', '2018-01-17 15:31:50', '2018-01-17 15:31:50', 1, NULL, ''),
-(31, NULL, 'admin', 'Banc de musculation pour abdominaux', '', '35,45,49', '', '', '<br>', 200, 200, 2, NULL, '15162041268_ab-x_precor.jpg', '<br>', 0, 0, 'yes', '2018-01-17 15:48:46', '2018-01-17 15:48:46', 1, NULL, ''),
-(32, NULL, 'admin', 'Mollet', '', '35,42,58', '', '', '<br>', 500, 500, 1, NULL, '15162043219_PlateLoadedCalfRaise_SportsArt.png', '<br>', 0, 0, 'yes', '2018-01-17 15:52:02', '2018-01-17 15:52:02', 1, NULL, ''),
-(33, NULL, 'admin', 'V-crunch', '', '35,45,49', '', '', '<br>', 400, 400, 2, NULL, '151620445810_v-crunch_precor.png', '<br>', 0, 4, 'yes', '2018-01-17 15:54:18', '2018-03-09 09:18:56', 1, NULL, ''),
-(34, NULL, 'admin', 'Strech Trainer', '', '63,64,65', '', '', '<br>', 200, 200, 2, NULL, '151620489011_StretchTrainer240i_Precor.jpg', '<br>', 0, 3, 'yes', '2018-01-17 16:01:30', '2018-02-09 08:18:01', 1, NULL, ''),
-(35, NULL, 'admin', 'Tirage Poulie Inférieur', '', '35,45,55', '', '', '<br>', 1200, 1200, 2, NULL, '151620502615_TiragePoulieInférieure_VR3_Cybex_1.png', '<br>', 0, 0, 'yes', '2018-01-17 16:03:46', '2018-01-17 16:03:46', 1, NULL, ''),
-(36, NULL, 'admin', 'Abdominaux', '', '35,45,49', '', '', '<br>', 1200, 1200, 2, NULL, '151620514217_Abdominaux_VR3_Cybex_1.png', '<br>', 0, 4, 'yes', '2018-01-17 16:05:42', '2018-02-17 14:41:28', 1, '1518715897cybex-converted.png', 'libre'),
-(37, NULL, 'admin', 'Aviron', '', '35,45,55', '', '', '<br>', 1200, 1200, 2, NULL, '151620523818_Aviron_VR3_Cybex_1.png', '<br>', 0, 0, 'yes', '2018-01-17 16:07:18', '2018-01-17 16:07:18', 1, NULL, ''),
-(38, NULL, 'admin', 'Tirage Poulie Supérieur', '', '35,52,56', '', '', '<br>', 1200, 1200, 1, NULL, '151620548915_TiragePoulieInférieure_VR3_Cybex_1.png', '<br>', 0, 0, 'yes', '2018-01-17 16:11:29', '2018-01-17 16:11:29', 1, NULL, ''),
-(39, NULL, 'admin', '45° Extension Dos', '', '35,45,55', '', '', '<br>', 400, 400, 1, NULL, '151620557927_45°backextension_Cybex.png', '<br>', 0, 0, 'yes', '2018-01-17 16:12:59', '2018-01-17 16:12:59', 1, NULL, ''),
-(40, NULL, 'admin', 'Tirage Nuque/Poitrine', '', '35,45,55', '', '', '<br>', 600, 600, 1, NULL, '151620568130_LatPullDown_LS102_Lexco.jpeg', '<br>', 0, 0, 'yes', '2018-01-17 16:14:41', '2018-01-17 16:14:41', 1, NULL, ''),
-(41, NULL, 'admin', 'Triceps dips', '', '35,52,61', '', '', '<br>', 600, 600, 1, NULL, '151620579431_Dipping_LS109_Lexco.jpeg', '<br>', 0, 0, 'yes', '2018-01-17 16:16:34', '2018-01-17 16:16:34', 1, NULL, ''),
-(42, NULL, 'admin', 'Dorsy bas', '', '35,45,55', '', '', '<br>', 600, 600, 1, NULL, '151620592232_MidRow_LS108_Lexco.jpeg', '<br>', 0, 3, 'yes', '2018-01-17 16:18:42', '2018-02-15 18:22:35', 1, NULL, ''),
-(43, NULL, 'admin', 'Butter Fly', '', '35,45,59', '', '', '<br>', 600, 600, 1, NULL, '151620605933_Butterfly_LS106_Lexco.jpeg', '<br>', 0, 0, 'yes', '2018-01-17 16:20:59', '2018-01-17 16:20:59', 1, NULL, ''),
-(44, NULL, 'admin', 'Flexion Avant Bras', '', '35,52,53', '', '', '<br>', 1200, 1200, 3, NULL, '151620617534_FlexionBras_VR3_Cybex_1.png', '<br>', 0, 0, 'yes', '2018-01-17 16:22:55', '2018-01-17 16:22:55', 1, NULL, ''),
-(45, NULL, 'admin', 'Extension Jambe', '', '35,42,60', '', '', '<br>', 1200, 1200, 2, NULL, '151620627135_LegExtension_VR3_Cybex_1.png', '<br>', 0, 0, 'yes', '2018-01-17 16:24:31', '2018-01-17 16:24:31', 1, NULL, ''),
-(46, NULL, 'admin', 'Rotation Torse', '', '35,45,49', '', '', '<br>', 1200, 1200, 1, NULL, '151620638737_RotationTorse_VR3_Cybex_1.png', '<br>', 0, 3, 'yes', '2018-01-17 16:26:27', '2018-03-07 11:34:47', 1, NULL, ''),
-(47, NULL, 'admin', 'Presse Horizontale-', '', '35,42,60', '', '', '<br>', 1400, 1400, 1, NULL, '151620673136_LegPress_VR3_Cybex_1.png', '<br>', 0, 0, 'yes', '2018-01-17 16:32:11', '2018-01-17 16:32:11', 1, NULL, ''),
-(48, NULL, 'admin', 'Adduction Hanche', '', '35,42,51', '', '', '<br>', 1200, 1200, 2, NULL, '151620685038_HipAdduction_VR3_Cybex_1.png', '<br>', 0, 0, 'yes', '2018-01-17 16:34:10', '2018-01-17 16:34:10', 1, NULL, ''),
-(49, NULL, 'admin', 'Smith Press', '', '35,44,46', '', '', '<br>', 1200, 1200, 3, NULL, '151620693440_SmithPress_LifeFitness.jpg', '<br>', 0, 2, 'yes', '2018-01-17 16:35:34', '2018-02-15 18:04:22', 1, NULL, ''),
-(50, NULL, 'admin', 'Presse à Jambes', '', '35,42,60', '', '', '<br>', 1200, 1200, 1, NULL, '151620706141_LegPress_VR1_Cybex.png', '<br>', 0, 0, 'yes', '2018-01-17 16:37:41', '2018-01-17 16:37:41', 1, NULL, ''),
-(51, NULL, 'admin', 'Vis-à-vis', '', '35,44,47', '', '', '<br>', 1400, 1400, 2, NULL, '1516207371no-pic.jpg', '<br>', 0, 0, 'yes', '2018-01-17 16:42:51', '2018-01-17 16:42:51', 1, NULL, ''),
-(52, NULL, 'admin', 'Traction/Dips assisté', '', '35,44,48', '', '', '<br>', 1000, 1000, 1, NULL, '151620747243_AssistedChinDipA911_SportsArt.jpg', '<br>', 0, 0, 'yes', '2018-01-17 16:44:32', '2018-01-17 16:44:32', 1, NULL, ''),
-(53, NULL, 'admin', 'Colonne Cable', '', '35,44,46', '', '', '<br>', 1000, 1000, 1, NULL, '1516207606no-pic.jpg', '<br>', 0, 1, 'yes', '2018-01-17 16:46:46', '2018-02-17 14:16:43', 1, NULL, ''),
-(54, NULL, 'admin', 'Abduction Hanche', '', '35,42,51', '', '', '<br>', 1200, 1200, 2, NULL, '151620769149_HipAbduction_VR3_Cybex_1.png', '<br>', 0, 1, 'yes', '2018-01-17 16:48:11', '2018-03-09 15:36:44', 1, NULL, ''),
-(55, NULL, 'admin', 'Assi Flexion Jambe', '', '35,42,54', '', '', '<br>', 1200, 1200, 2, NULL, '151620779250_SeatedLegCurl_VR3_Cybex_1.png', '<br>', 0, 0, 'yes', '2018-01-17 16:49:52', '2018-01-17 16:49:52', 1, NULL, ''),
-(56, NULL, 'admin', 'ChinDipFlexor', '', '35,44,50', '', '', '<br>', 600, 600, 1, NULL, '151620788051_ChinDipFlexor_Lexco.jpeg', '<br>', 0, 0, 'yes', '2018-01-17 16:51:20', '2018-01-17 16:51:20', 1, NULL, ''),
-(57, NULL, 'admin', 'Mouche/Delta', '', '35,45,59', '', '', '<br>', 1200, 1200, 2, NULL, '151620798752_MoucheDelta_VR1_Cybex.png', '<br>', 0, 0, 'yes', '2018-01-17 16:53:07', '2018-01-17 16:53:07', 1, NULL, ''),
-(58, NULL, 'admin', 'Tirage Nuque/Poitrine-', '', '35,45,55', '', '', '<br>', 800, 800, 1, NULL, '151620817255_LatPullDownA926_sportsart.jpg', '<br>', 0, 0, 'yes', '2018-01-17 16:56:12', '2018-01-17 16:56:12', 1, NULL, ''),
-(59, NULL, 'admin', 'Presse à Pectoraux', '', '35,45,59', '', '', '<br>', 1200, 1200, 2, NULL, '151620827956_PresseAPectoraux_VR3_Cybex_1.png', '<br>', 0, 2, 'yes', '2018-01-17 16:57:59', '2018-03-09 09:31:39', 1, NULL, ''),
-(60, NULL, 'admin', 'Soulevement Latéral', '', '35,52,57', '', '', '<div id=\"lipsum\">\r\n<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel tortor \r\nodio. Aliquam scelerisque a sapien vitae hendrerit. Curabitur nisl \r\nlorem, aliquet eget convallis id, vehicula ut turpis. Suspendisse eget \r\norci velit. Praesent vitae dolor sed felis consectetur convallis. Nunc \r\narcu elit, fringilla eget ornare sed, condimentum sed elit. Vivamus orci\r\n nunc, bibendum sit amet pretium in, hendrerit non ipsum. Nunc dapibus \r\narcu urna, ac aliquet orci mattis vel. Etiam mollis ornare nunc, vitae \r\ncommodo lectus maximus eu. In sodales venenatis quam ut sodales. Vivamus\r\n rhoncus tristique condimentum. Phasellus at ligula vel tellus elementum\r\n viverra. Vivamus vestibulum orci quis malesuada fermentum.\r\n</p></div>', 1200, 1200, 1, NULL, '1528648736npm.jpg', '<div id=\"lipsum\">\r\n<p>\r\nLlorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel tortor \r\nodio. Aliquam scelerisque a sapien vitae hendrerit. Curabitur nisl \r\nlorem, aliquet eget convallis id, vehicula ut turpis. Suspendisse eget \r\norci velit. Praesent vitae dolor sed felis consectetur convallis. Nunc \r\narcu elit, fringilla eget ornare sed, condimentum sed elit. Vivamus orci\r\n nunc, bibendum sit amet pretium in, hendrerit non ipsum. Nunc dapibus \r\narcu urna, ac aliquet orci mattis vel. Etiam mollis ornare nunc, vitae \r\ncommodo lectus maximus eu. In sodales venenatis quam ut sodales. Vivamus\r\n rhoncus tristique condimentum. Phasellus at ligula vel tellus elementum\r\n viverra. Vivamus vestibulum orci quis malesuada fermentum.\r\n</p></div>', 0, 29, 'yes', '2018-01-17 16:59:23', '2018-06-10 17:25:43', 1, '1520594153cybex.png', 'libre'),
-(61, NULL, 'admin', 'test', 'testfrench0', '35,44,46', 'testmodel', 'testmark', '<br>', 20, 25, 15, NULL, '1528928177npm.jpg', 'fgf<br>', 0, 13, 'yes', '2018-06-13 22:16:17', '2018-06-13 23:33:16', 1, NULL, NULL);
+INSERT INTO `products` (`id`, `vendorid`, `owner`, `title`, `title_secondary`, `category`, `model`, `mark_id`, `description`, `price`, `previous_price`, `stock`, `sizes`, `feature_image`, `policy`, `featured`, `views`, `approved`, `created_at`, `updated_at`, `status`, `logomarque`, `categorisation`) VALUES
+(25, NULL, 'admin', 'Tesing Project Float', '', '17,,', '', NULL, 'sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf', 20.99, 25.99, 993, NULL, '1511805237mi.jpg', 'sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf sssss sssssssss sssssssssssss sssssx dsfsd dfgsfg sfsdf', 1, 31, 'yes', '2017-05-30 14:56:16', '2018-06-24 23:59:20', 1, NULL, ''),
+(27, NULL, 'admin', 'Tapis de course', '', '17,43,', '', NULL, '<br>', 2000, 2000, 1, NULL, '15157814456_mxt4x_matrix.jpg', '<br>', 0, 16, 'yes', '2018-01-12 18:24:05', '2018-06-24 23:59:34', 1, NULL, ''),
+(29, NULL, 'admin', 'Cardio training', '', '35,45,55', '', NULL, 'testtesttest', 120, 150, 12, NULL, '1516126759f0876672-450x291.jpg', 'tetsttetst', 0, 1, 'yes', '2018-01-16 18:19:19', '2018-03-09 08:50:29', 1, NULL, ''),
+(30, NULL, 'admin', 'Presse Horizontale', '', '35,42,60', '', NULL, 'Charges guidées <br>', 1000, 1000, 1, NULL, '15162031101_SeatedLegPress_LS117_Lexco.jpeg', '<br>', 0, 0, 'yes', '2018-01-17 15:31:50', '2018-01-17 15:31:50', 1, NULL, ''),
+(31, NULL, 'admin', 'Banc de musculation pour abdominaux', '', '35,45,49', '', NULL, '<br>', 200, 200, 2, NULL, '15162041268_ab-x_precor.jpg', '<br>', 0, 2, 'yes', '2018-01-17 15:48:46', '2018-06-25 00:04:35', 1, NULL, ''),
+(32, NULL, 'admin', 'Mollet', '', '35,42,58', '', NULL, '<br>', 500, 500, 1, NULL, '15162043219_PlateLoadedCalfRaise_SportsArt.png', '<br>', 0, 0, 'yes', '2018-01-17 15:52:02', '2018-01-17 15:52:02', 1, NULL, ''),
+(33, NULL, 'admin', 'V-crunch', '', '35,45,49', '', NULL, '<br>', 400, 400, 2, NULL, '151620445810_v-crunch_precor.png', '<br>', 0, 4, 'yes', '2018-01-17 15:54:18', '2018-03-09 09:18:56', 1, NULL, ''),
+(34, NULL, 'admin', 'Strech Trainer', '', '63,64,65', '', NULL, '<br>', 200, 200, 2, NULL, '151620489011_StretchTrainer240i_Precor.jpg', '<br>', 0, 3, 'yes', '2018-01-17 16:01:30', '2018-02-09 08:18:01', 1, NULL, ''),
+(35, NULL, 'admin', 'Tirage Poulie Inférieur', '', '35,45,55', '', NULL, '<br>', 1200, 1200, 2, NULL, '151620502615_TiragePoulieInférieure_VR3_Cybex_1.png', '<br>', 0, 0, 'yes', '2018-01-17 16:03:46', '2018-01-17 16:03:46', 1, NULL, ''),
+(36, NULL, 'admin', 'Abdominaux', '', '35,45,49', '', NULL, '<br>', 1200, 1200, 2, NULL, '151620514217_Abdominaux_VR3_Cybex_1.png', '<br>', 0, 4, 'yes', '2018-01-17 16:05:42', '2018-02-17 14:41:28', 1, '1518715897cybex-converted.png', 'libre'),
+(37, NULL, 'admin', 'Aviron', '', '35,45,55', '', NULL, '<br>', 1200, 1200, 2, NULL, '151620523818_Aviron_VR3_Cybex_1.png', '<br>', 0, 0, 'yes', '2018-01-17 16:07:18', '2018-01-17 16:07:18', 1, NULL, ''),
+(38, NULL, 'admin', 'Tirage Poulie Supérieur', '', '35,52,56', '', NULL, '<br>', 1200, 1200, 1, NULL, '151620548915_TiragePoulieInférieure_VR3_Cybex_1.png', '<br>', 0, 0, 'yes', '2018-01-17 16:11:29', '2018-01-17 16:11:29', 1, NULL, ''),
+(39, NULL, 'admin', '45° Extension Dos', '', '35,45,55', '', NULL, '<br>', 400, 400, 1, NULL, '151620557927_45°backextension_Cybex.png', '<br>', 0, 0, 'yes', '2018-01-17 16:12:59', '2018-01-17 16:12:59', 1, NULL, ''),
+(40, NULL, 'admin', 'Tirage Nuque/Poitrine', '', '35,45,55', '', NULL, '<br>', 600, 600, 1, NULL, '151620568130_LatPullDown_LS102_Lexco.jpeg', '<br>', 0, 0, 'yes', '2018-01-17 16:14:41', '2018-01-17 16:14:41', 1, NULL, ''),
+(41, NULL, 'admin', 'Triceps dips', '', '35,52,61', '', NULL, '<br>', 600, 600, 1, NULL, '151620579431_Dipping_LS109_Lexco.jpeg', '<br>', 0, 0, 'yes', '2018-01-17 16:16:34', '2018-01-17 16:16:34', 1, NULL, ''),
+(42, NULL, 'admin', 'Dorsy bas', '', '35,45,55', '', NULL, '<br>', 600, 600, 1, NULL, '151620592232_MidRow_LS108_Lexco.jpeg', '<br>', 0, 3, 'yes', '2018-01-17 16:18:42', '2018-02-15 18:22:35', 1, NULL, ''),
+(43, NULL, 'admin', 'Butter Fly', '', '35,45,59', '', NULL, '<br>', 600, 600, 1, NULL, '151620605933_Butterfly_LS106_Lexco.jpeg', '<br>', 0, 0, 'yes', '2018-01-17 16:20:59', '2018-01-17 16:20:59', 1, NULL, ''),
+(44, NULL, 'admin', 'Flexion Avant Bras', '', '35,52,53', '', NULL, '<br>', 1200, 1200, 3, NULL, '151620617534_FlexionBras_VR3_Cybex_1.png', '<br>', 0, 0, 'yes', '2018-01-17 16:22:55', '2018-01-17 16:22:55', 1, NULL, ''),
+(45, NULL, 'admin', 'Extension Jambe', '', '35,42,60', '', NULL, '<br>', 1200, 1200, 2, NULL, '151620627135_LegExtension_VR3_Cybex_1.png', '<br>', 0, 0, 'yes', '2018-01-17 16:24:31', '2018-01-17 16:24:31', 1, NULL, ''),
+(46, NULL, 'admin', 'Rotation Torse', '', '35,45,49', '', NULL, '<br>', 1200, 1200, 1, NULL, '151620638737_RotationTorse_VR3_Cybex_1.png', '<br>', 0, 3, 'yes', '2018-01-17 16:26:27', '2018-03-07 11:34:47', 1, NULL, ''),
+(47, NULL, 'admin', 'Presse Horizontale-', '', '35,42,60', '', NULL, '<br>', 1400, 1400, 1, NULL, '151620673136_LegPress_VR3_Cybex_1.png', '<br>', 0, 0, 'yes', '2018-01-17 16:32:11', '2018-01-17 16:32:11', 1, NULL, ''),
+(48, NULL, 'admin', 'Adduction Hanche', '', '35,42,51', '', NULL, '<br>', 1200, 1200, 2, NULL, '151620685038_HipAdduction_VR3_Cybex_1.png', '<br>', 0, 0, 'yes', '2018-01-17 16:34:10', '2018-01-17 16:34:10', 1, NULL, ''),
+(49, NULL, 'admin', 'Smith Press', '', '35,44,46', '', NULL, '<br>', 1200, 1200, 3, NULL, '151620693440_SmithPress_LifeFitness.jpg', '<br>', 0, 2, 'yes', '2018-01-17 16:35:34', '2018-02-15 18:04:22', 1, NULL, ''),
+(50, NULL, 'admin', 'Presse à Jambes', '', '35,42,60', '', NULL, '<br>', 1200, 1200, 1, NULL, '151620706141_LegPress_VR1_Cybex.png', '<br>', 0, 0, 'yes', '2018-01-17 16:37:41', '2018-01-17 16:37:41', 1, NULL, ''),
+(51, NULL, 'admin', 'Vis-à-vis', '', '35,44,47', '', NULL, '<br>', 1400, 1400, 2, NULL, '1516207371no-pic.jpg', '<br>', 0, 0, 'yes', '2018-01-17 16:42:51', '2018-01-17 16:42:51', 1, NULL, ''),
+(52, NULL, 'admin', 'Traction/Dips assisté', '', '35,44,48', '', NULL, '<br>', 1000, 1000, 1, NULL, '151620747243_AssistedChinDipA911_SportsArt.jpg', '<br>', 0, 0, 'yes', '2018-01-17 16:44:32', '2018-01-17 16:44:32', 1, NULL, ''),
+(53, NULL, 'admin', 'Colonne Cable', '', '35,44,46', '', NULL, '<br>', 1000, 1000, 1, NULL, '1516207606no-pic.jpg', '<br>', 0, 1, 'yes', '2018-01-17 16:46:46', '2018-02-17 14:16:43', 1, NULL, ''),
+(54, NULL, 'admin', 'Abduction Hanche', '', '35,42,51', '', NULL, '<br>', 1200, 1200, 2, NULL, '151620769149_HipAbduction_VR3_Cybex_1.png', '<br>', 0, 1, 'yes', '2018-01-17 16:48:11', '2018-03-09 15:36:44', 1, NULL, ''),
+(55, NULL, 'admin', 'Assi Flexion Jambe', '', '35,42,54', '', NULL, '<br>', 1200, 1200, 2, NULL, '151620779250_SeatedLegCurl_VR3_Cybex_1.png', '<br>', 0, 0, 'yes', '2018-01-17 16:49:52', '2018-01-17 16:49:52', 1, NULL, ''),
+(56, NULL, 'admin', 'ChinDipFlexor', '', '35,44,50', '', NULL, '<br>', 600, 600, 1, NULL, '151620788051_ChinDipFlexor_Lexco.jpeg', '<br>', 0, 0, 'yes', '2018-01-17 16:51:20', '2018-01-17 16:51:20', 1, NULL, ''),
+(57, NULL, 'admin', 'Mouche/Delta', NULL, '35,45,59', NULL, 1, '<br>', 1200, 1200, 2, NULL, '151620798752_MoucheDelta_VR1_Cybex.png', '<br>', 0, 0, 'yes', '2018-01-17 16:53:07', '2018-06-24 15:44:35', 1, NULL, ''),
+(58, NULL, 'admin', 'Tirage Nuque/Poitrine-', NULL, '35,45,55', NULL, 1, '<br>', 800, 800, 1, NULL, '151620817255_LatPullDownA926_sportsart.jpg', '<br>', 0, 0, 'yes', '2018-01-17 16:56:12', '2018-06-24 15:44:26', 1, NULL, ''),
+(59, NULL, 'admin', 'Presse à Pectoraux', '', '35,45,59', '', NULL, '<br>', 1200, 1200, 2, NULL, '151620827956_PresseAPectoraux_VR3_Cybex_1.png', '<br>', 0, 2, 'yes', '2018-01-17 16:57:59', '2018-03-09 09:31:39', 1, NULL, ''),
+(60, NULL, 'admin', 'Soulevement Latéral', NULL, '35,52,57', NULL, 1, '<div id=\"lipsum\">\r\n<p>\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel tortor \r\nodio. Aliquam scelerisque a sapien vitae hendrerit. Curabitur nisl \r\nlorem, aliquet eget convallis id, vehicula ut turpis. Suspendisse eget \r\norci velit. Praesent vitae dolor sed felis consectetur convallis. Nunc \r\narcu elit, fringilla eget ornare sed, condimentum sed elit. Vivamus orci\r\n nunc, bibendum sit amet pretium in, hendrerit non ipsum. Nunc dapibus \r\narcu urna, ac aliquet orci mattis vel. Etiam mollis ornare nunc, vitae \r\ncommodo lectus maximus eu. In sodales venenatis quam ut sodales. Vivamus\r\n rhoncus tristique condimentum. Phasellus at ligula vel tellus elementum\r\n viverra. Vivamus vestibulum orci quis malesuada fermentum.\r\n</p></div>', 1200, 1200, 1, NULL, '1528648736npm.jpg', '<div id=\"lipsum\">\r\n<p>\r\nLlorem ipsum dolor sit amet, consectetur adipiscing elit. Nam vel tortor \r\nodio. Aliquam scelerisque a sapien vitae hendrerit. Curabitur nisl \r\nlorem, aliquet eget convallis id, vehicula ut turpis. Suspendisse eget \r\norci velit. Praesent vitae dolor sed felis consectetur convallis. Nunc \r\narcu elit, fringilla eget ornare sed, condimentum sed elit. Vivamus orci\r\n nunc, bibendum sit amet pretium in, hendrerit non ipsum. Nunc dapibus \r\narcu urna, ac aliquet orci mattis vel. Etiam mollis ornare nunc, vitae \r\ncommodo lectus maximus eu. In sodales venenatis quam ut sodales. Vivamus\r\n rhoncus tristique condimentum. Phasellus at ligula vel tellus elementum\r\n viverra. Vivamus vestibulum orci quis malesuada fermentum.\r\n</p></div>', 0, 29, 'yes', '2018-01-17 16:59:23', '2018-06-24 15:44:10', 1, '1520594153cybex.png', 'libre'),
+(63, NULL, 'admin', 'test', 'test', '35,44,46', 'test', 4, 'test<br>', 20, 20, 20, NULL, '1529882534npm.jpg', 'test<br>', 0, 24, 'yes', '2018-06-20 21:08:28', '2018-06-24 23:22:14', 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -418,7 +439,10 @@ INSERT INTO `product_gallery` (`id`, `productid`, `image`) VALUES
 (44, 61, '1D151871430026942711_10156065934913748_1656512044_n.png'),
 (45, 62, 'M31518715489cybex-converted.png'),
 (47, 60, 'yI1528648802Raatajat_rahanalaiset.JPG'),
-(48, 61, 'BV1528928177npm.jpg');
+(48, 61, 'BV1528928177npm.jpg'),
+(49, 62, 'eL1529451565npm.jpg'),
+(50, 63, 'PL1529528908npm.jpg'),
+(51, 63, 'Gn1529882534npm.jpg');
 
 -- --------------------------------------------------------
 
@@ -546,6 +570,7 @@ CREATE TABLE `sliders` (
   `id` int(11) NOT NULL,
   `title` varchar(255) CHARACTER SET latin1 NOT NULL,
   `text` text CHARACTER SET latin1 NOT NULL,
+  `link` tinytext COLLATE utf8_unicode_ci,
   `image` varchar(255) CHARACTER SET latin1 NOT NULL,
   `text_position` varchar(255) CHARACTER SET latin1 NOT NULL,
   `status` int(11) NOT NULL DEFAULT '1'
@@ -555,9 +580,9 @@ CREATE TABLE `sliders` (
 -- Dumping data for table `sliders`
 --
 
-INSERT INTO `sliders` (`id`, `title`, `text`, `image`, `text_position`, `status`) VALUES
-(6, 'Cardio training', 'Entretenir votre forme, misez sur l\'endurance !', 'MYrmaxresdefault.jpg', 'slide_style_left', 1),
-(7, 'Musculation', 'Acquérir plus de force, d\'endurance, de puissance, ou de volume musculaire.', 'cyUsalle-de-musculation-grenoble.jpg', 'slide_style_left', 1);
+INSERT INTO `sliders` (`id`, `title`, `text`, `link`, `image`, `text_position`, `status`) VALUES
+(6, 'Cardio training', 'Entretenir votre forme, misez sur l\'endurance !', 'http://duckduckgo.com/', '5fobarbell-black-and-white-black-and-white-791763.jpg', 'slide_style_left', 1),
+(7, 'Musculation', 'Acquérir plus de force, d\'endurance, de puissance, ou de volume musculaire.', 'https://twitter.com', 'aNbadult-athlete-barbell-685530.jpg', 'slide_style_left', 1);
 
 -- --------------------------------------------------------
 
@@ -750,6 +775,12 @@ ALTER TABLE `counter`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `marks`
+--
+ALTER TABLE `marks`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `ordered_products`
 --
 ALTER TABLE `ordered_products`
@@ -771,7 +802,8 @@ ALTER TABLE `page_settings`
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `FK_products_marks` (`mark_id`);
 
 --
 -- Indexes for table `product_gallery`
@@ -880,6 +912,11 @@ ALTER TABLE `code_scripts`
 ALTER TABLE `counter`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
+-- AUTO_INCREMENT for table `marks`
+--
+ALTER TABLE `marks`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT for table `ordered_products`
 --
 ALTER TABLE `ordered_products`
@@ -898,12 +935,12 @@ ALTER TABLE `page_settings`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 --
 -- AUTO_INCREMENT for table `product_gallery`
 --
 ALTER TABLE `product_gallery`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 --
 -- AUTO_INCREMENT for table `reviews`
 --
@@ -959,6 +996,16 @@ ALTER TABLE `vendor_profiles`
 --
 ALTER TABLE `withdraws`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `FK_products_marks` FOREIGN KEY (`mark_id`) REFERENCES `marks` (`id`) ON DELETE SET NULL ON UPDATE SET NULL;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

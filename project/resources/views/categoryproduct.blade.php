@@ -51,8 +51,9 @@
                             </select>
                         </div>
 
-                        <h3 class="allcats">All Categories</h3>
+                        
                         <div id="left" class="span3">
+                            <h3 class="allcats">All Categories</h3>
                             <ul id="menu-group-1" class="nav menu">
                                 @foreach($menus as $menu)
                                     <li class="item-1 deeper parent">
@@ -86,13 +87,19 @@
                                     </li>
                                 @endforeach
                             </ul>
+
+                            <h3 class="allcats">MARQUES {{$mark_id}}</h3>
+                              <select id="marks" class="filter-option form-control">
+                                <option value="all" <?=!isset($mark_id) || $mark_id === 'all' ? 'selected' : ''?>>All marks</option>
+                                @foreach($marks as $mark)
+                                  <option value="{{$mark->id}}" <?=isset($mark_id) && $mark_id == $mark->id ? 'selected' : ''?>>{{$mark->name}}</option>
+                                @endforeach
+                              </select>
                         </div>
-                         <h3 class="allcats">PRODUITS</h3>
-                         <h3 class="allcats">MARQUES</h3>
-                         <h3 class="allcats">NOUVEAUTES</h3>
+                         
                          <h3 class="allcats">PRIX</h3>
-                         <input id="ex2" type="text" class="span2" value="" data-slider-min="0" data-slider-max="5000" data-slider-step="5" data-slider-value="[250,450]"/> 
-                         <br><b>€ 0</b><b>€ 5000</b>
+                         <input id="ex2" type="text" class="span2" value="" data-slider-min="{{$min}}" data-slider-max="{{$max}}" data-slider-step="5" data-slider-value="[{{$min}},{{$max}}]"/> 
+                         <br>From <b>{{$min}}{{env('CURRENCY')}}</b> to <b>{{$max}}{{env('CURRENCY')}}</b>
                         </div>
                     </div>
 
@@ -115,7 +122,7 @@
                                                 <span class="price-old">{{$product->previous_price}}{{env('CURRENCY')}}</span>
                                             @else
                                             @endif
-                                            <span class="price-new">{{$product->price}}{{env('CURRENCY')}}</span>
+                                            <span class="price-new"><span>{{$product->price}}</span>{{env('CURRENCY')}}</span>
                                         </div>
                                         <div class="pull-right">
                                             <span class="review">
@@ -182,22 +189,52 @@
 
 @section('footer')
 <script type="text/javascript">
-var slider = new Slider('#ex2', {});
+  // var slider = new Slider('#ex2', {});
 
 </script>
 <script>
-
+    var a = $("#ex2").slider().on('slide', function() {
+      var min = a.getValue()[0];
+      var max = a.getValue()[1];
+      $('div#products div.product').each(function(){
+        var price = $(this).find('span.price-new span').html();
+        console.log(price);
+        if (price < min || price > max) {
+          $(this).hide();
+        } else {
+          $(this).show();
+        }
+      })
+    }).data('slider');
+    function queryBuilder() {
+      var sort = $("#sortby").val();
+      var mark_id = $("#marks").val();
+      var query = '?';
+      if(sort) {
+        query = query + "sort="+sort+'&';
+      }
+      if(mark_id) {
+        query = query + "mark_id="+mark_id+'&';
+      }
+      return query;
+    }
     $("#sortby").change(function () {
-        var sort = $("#sortby").val();
-        window.location = "{{url('/category')}}/{{$category->slug}}?sort="+sort;
+        var searchQuery = queryBuilder();
+        window.location = "{{url('/category')}}/{{$category->slug}}"+searchQuery;
+    });
+
+    $("#marks").change(function () {
+        var searchQuery = queryBuilder();
+        window.location = "{{url('/category')}}/{{$category->slug}}"+searchQuery;
     });
 
     $("#load-more").click(function () {
         $("#load").show();
         var slug = "{{$category->slug}}";
         var page = $("#page").val();
-        var sort = $("#sortby").val();
-        $.get("{{url('/')}}/loadcategory/"+slug+"/"+page+"?sort="+sort, function(data, status){
+        // var sort = $("#sortby").val();
+        var searchQuery = queryBuilder();
+        $.get("{{url('/')}}/loadcategory/"+slug+"/"+page+searchQuery, function(data, status){
             $("#load").fadeOut();
             $("#products").append(data);
             //alert("Data: " + data + "\nStatus: " + status);

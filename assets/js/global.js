@@ -361,7 +361,7 @@ $(function () {
   });
 
   $('.open-cart-popup').on('mouseleave', function () {
-    closecartTimeout = setTimeout(function () { closePopups(); }, 300);
+    closecartTimeout = setTimeout(function () { closePopups(); }, 2000);
   });
 
   var closecartTimeout = 0;
@@ -369,7 +369,7 @@ $(function () {
     clearTimeout(closecartTimeout);
   });
   $('.cart-box.popup').on('mouseleave', function () {
-    closecartTimeout = setTimeout(function () { closePopups(); }, 200);
+    closecartTimeout = setTimeout(function () { closePopups(); }, 2000);
   });
 
   function closePopups() {

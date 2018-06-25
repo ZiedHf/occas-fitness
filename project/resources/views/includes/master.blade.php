@@ -189,8 +189,12 @@
                     </div> -->
     </div>
     <div class="col-md-3">
-        <h4 style=" text-decoration: underline;">COMPTE</h4>
-        <p>{!! $settings[0]->about !!}</p>
+        <h4 style=" text-decoration: underline;">Latest Products</h4>
+        <ul>
+          @foreach($products as $product)
+            <li><a href="{{ url('/product/'.$product->id.'/'.str_replace(' ', '-', strtolower($product->title))) }}">{{$product->title}}</a></li>
+          @endforeach
+        </ul>
     </div> 
     <div class="col-md-3 ">
         <p><img style="width:50%" alt="" src="{{ URL::asset('assets/images/logo')}}/footer-LogoOccas Fitness.png"></p>

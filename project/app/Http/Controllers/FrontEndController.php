@@ -10,6 +10,7 @@ use App\Order;
 use App\OrderedProducts;
 use App\PageSettings;
 use App\Product;
+use App\Mark;
 use App\Review;
 use App\SectionTitles;
 use App\Service;
@@ -260,50 +261,43 @@ class FrontEndController extends Controller
         if (Input::get('sort') != "") {
             $sort = Input::get('sort');
         }
+        $where_array = [['status','1']];
+        $mark_id = Input::get('mark_id');
+        if ($mark_id != "" && $mark_id !== 'all') {
+          $where_array[] = ['mark_id', $mark_id];
+        }
 
+        $marks = Mark::get();
         $category = Category::where('slug',$slug)->first();
+
+        $min = 0;
+        $max = 0;
         if ($category === null) {
             $category['name'] = "Nothing Found";
             $products = new \stdClass();
         }else{
-
+            $order_by = [];
             if ($sort=="old") {
-                
-                $products = Product::where('status','1')->whereRaw('FIND_IN_SET(?,category)', [$category->id])
-                ->orderBy('created_at','asc')
-                ->take(9)
-                ->get();
-                
+              $order_by = ['column' => 'created_at', 'order' => 'asc'];
             }elseif ($sort=="new") {
-
-                $products = Product::where('status','1')->whereRaw('FIND_IN_SET(?,category)', [$category->id])
-                ->orderBy('created_at','desc')
-                ->take(9)
-                ->get();
-
+              $order_by = ['column' => 'created_at', 'order' => 'desc'];
             }elseif ($sort=="low") {
-
-                $products = Product::where('status','1')->whereRaw('FIND_IN_SET(?,category)', [$category->id])
-                ->orderBy('price','asc')
-                ->take(9)
-                ->get();
-
+              $order_by = ['column' => 'price', 'order' => 'asc'];
             }elseif ($sort=="high") {
-
-                $products = Product::where('status','1')->whereRaw('FIND_IN_SET(?,category)', [$category->id])
-                ->orderBy('price','desc')
-                ->take(9)
-                ->get();
-
+              $order_by = ['column' => 'price', 'order' => 'desc'];
             }else{
-
-                $products = Product::where('status','1')->whereRaw('FIND_IN_SET(?,category)', [$category->id])
-                ->orderBy('created_at','desc')
-                ->take(9)
-                ->get();
+              $order_by = ['column' => 'created_at', 'order' => 'desc'];
             }
+            $productsQuery = Product::where($where_array)->whereRaw('FIND_IN_SET(?,category)', [$category->id])
+                ->orderBy($order_by['column'], $order_by['order']);
+            if($productsQuery->count()) {
+              $productsNoPagination = $productsQuery->get();
+              $min = $productsNoPagination->min('price');
+              $max = $productsNoPagination->max('price');
+            }
+            $products = $productsQuery->take(9)->get();
         }
-        return view('categoryproduct', compact('products','category','sort'));
+        return view('categoryproduct', compact('min', 'max', 'products','category','sort', 'marks', 'mark_id'));
     }
 
     //Load More Category Products
@@ -311,10 +305,15 @@ class FrontEndController extends Controller
     {
         $res = "";
         $skip = ($page-1)*9;
-
         $sort = "";
         if (Input::get('sort') != "") {
             $sort = Input::get('sort');
+        }
+
+        $where_array = [['status','1']];
+        $mark_id = Input::get('mark_id');
+        if ($mark_id != "" && $mark_id !== 'all') {
+          $where_array[] = ['mark_id', $mark_id];
         }
 
         $category = Category::where('slug',$slug)->first();
@@ -322,49 +321,24 @@ class FrontEndController extends Controller
             $category['name'] = "Nothing Found";
             $products = new \stdClass();
         }else{
-
+            $order_by = [];
             if ($sort=="old") {
-                
-                $products = Product::where('status','1')->whereRaw('FIND_IN_SET(?,category)', [$category->id])
-                ->orderBy('created_at','asc')
-                ->skip($skip)
-                ->take(9)
-                ->get();
-                
+              $order_by = ['column' => 'created_at', 'order' => 'asc'];
             }elseif ($sort=="new") {
-
-                $products = Product::where('status','1')->whereRaw('FIND_IN_SET(?,category)', [$category->id])
-                ->orderBy('created_at','desc')
-                ->skip($skip)
-                ->take(9)
-                ->get();
-
+              $order_by = ['column' => 'created_at', 'order' => 'desc'];
             }elseif ($sort=="low") {
-
-                $products = Product::where('status','1')->whereRaw('FIND_IN_SET(?,category)', [$category->id])
-                ->orderBy('price','asc')
-                ->skip($skip)
-                ->take(9)
-                ->get();
-
+              $order_by = ['column' => 'price', 'order' => 'asc'];
             }elseif ($sort=="high") {
-
-                $products = Product::where('status','1')->whereRaw('FIND_IN_SET(?,category)', [$category->id])
-                ->orderBy('price','desc')
-                ->skip($skip)
-                ->take(9)
-                ->get();
-
+              $order_by = ['column' => 'price', 'order' => 'desc'];
             }else{
-
-                $products = Product::where('status','1')->whereRaw('FIND_IN_SET(?,category)', [$category->id])
-                ->orderBy('created_at','desc')
-                ->skip($skip)
-                ->take(9)
-                ->get();
+              $order_by = ['column' => 'created_at', 'order' => 'desc'];
             }
 
-
+            $products = Product::where($where_array)->whereRaw('FIND_IN_SET(?,category)', [$category->id])
+                ->orderBy($order_by['column'], $order_by['order'])
+                ->skip($skip)
+                ->take(9)
+                ->get();
             foreach($products as $product) {
                 $res .= '<div class="col-xs-6 col-sm-4 product">
                         <article class="col-item">

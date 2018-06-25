@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Advertisement;
+use App\Product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\ServiceProvider;
@@ -27,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
                 ->where('banner_size','728x90')->where('status',1)->first());
             $settings->with('ads300x250', Advertisement::inRandomOrder()
                 ->where('banner_size','300x250')->where('status',1)->get());
+            $settings->with('products', Product::take(5)->get());
         });
     }
 
