@@ -523,6 +523,7 @@ a.bordered-btn:hover {
 
 .review i{
     color: #f5c10c;
+    font-size: 11px;
 }
 
 #floating_alert {
@@ -554,8 +555,8 @@ a.bordered-btn:hover {
 }
 
 .col-item .price-details .price-old {
-    font-size:16px;
-    margin-top: 3px;
+    font-size:13px;
+    margin-top: 6px;
     text-decoration:line-through;
     color: #9c9c9c;
 }
