@@ -88,12 +88,19 @@
                                 @endforeach
                             </ul>
 
-                            <h3 class="allcats">MARQUES {{$mark_id}}</h3>
+                            <h3 class="allcats">MARQUES</h3>
                               <select id="marks" class="filter-option form-control">
                                 <option value="all" <?=!isset($mark_id) || $mark_id === 'all' ? 'selected' : ''?>>All marks</option>
                                 @foreach($marks as $mark)
                                   <option value="{{$mark->id}}" <?=isset($mark_id) && $mark_id == $mark->id ? 'selected' : ''?>>{{$mark->name}}</option>
                                 @endforeach
+                              </select>
+
+                            <h3 class="allcats">Caregorizations</h3>
+                              <select id="categorisations" class="filter-option form-control">
+                                <option value="all" <?=!isset($categorisation) || $categorisation === 'all' ? 'selected' : ''?>>All marks</option>
+                                <option value="free" <?=isset($categorisation) && $categorisation == 'free' ? 'selected' : ''?>>Free</option>
+                                <option value="guided" <?=isset($categorisation) && $categorisation == 'guided' ? 'selected' : ''?>>Guided</option>
                               </select>
                         </div>
                          
@@ -209,12 +216,16 @@
     function queryBuilder() {
       var sort = $("#sortby").val();
       var mark_id = $("#marks").val();
+      var categorisation = $("#categorisations").val();
       var query = '?';
       if(sort) {
         query = query + "sort="+sort+'&';
       }
       if(mark_id) {
         query = query + "mark_id="+mark_id+'&';
+      }
+      if(categorisation) {
+        query = query + "categorisation="+categorisation+'&';
       }
       return query;
     }
@@ -224,6 +235,11 @@
     });
 
     $("#marks").change(function () {
+        var searchQuery = queryBuilder();
+        window.location = "{{url('/category')}}/{{$category->slug}}"+searchQuery;
+    });
+
+    $("#categorisations").change(function () {
         var searchQuery = queryBuilder();
         window.location = "{{url('/category')}}/{{$category->slug}}"+searchQuery;
     });

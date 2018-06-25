@@ -77,7 +77,7 @@ class ProductController extends Controller
         if ($request->pallow == ""){
             $data->sizes = null;
         }
-
+        
         $data->save();
         $lastid = $data->id;
 

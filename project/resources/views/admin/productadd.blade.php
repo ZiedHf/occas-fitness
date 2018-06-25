@@ -46,12 +46,16 @@
                                 </div>
                             </div>
 
-                            <!-- <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Mark</label>
+                            <div class="item form-group">
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12">Categorization</label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="mark" class="form-control col-md-7 col-xs-12" name="mark" placeholder="e.g Awesome Clothes" type="text">
+                                    <select class="form-control" name="categorisation" id="categorizationType_id">
+                                        <option value="">Select Categorization Type</option>
+                                        <option value="free">Free</option>
+                                        <option value="guided">Guided</option>
+                                    </select>
                                 </div>
-                            </div> -->
+                            </div>
 
                             <div class="item form-group">
                                 <label class="control-label col-md-3 col-sm-3 col-xs-12">Mark</label>

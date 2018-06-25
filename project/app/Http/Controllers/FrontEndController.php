@@ -267,6 +267,11 @@ class FrontEndController extends Controller
           $where_array[] = ['mark_id', $mark_id];
         }
 
+        $categorisation = Input::get('categorisation');
+        if ($categorisation != "" && $categorisation !== 'all') {
+          $where_array[] = ['categorisation', 'like', $categorisation];
+        }
+        // print_r($where_array);die;
         $marks = Mark::get();
         $category = Category::where('slug',$slug)->first();
 
@@ -290,6 +295,7 @@ class FrontEndController extends Controller
             }
             $productsQuery = Product::where($where_array)->whereRaw('FIND_IN_SET(?,category)', [$category->id])
                 ->orderBy($order_by['column'], $order_by['order']);
+
             if($productsQuery->count()) {
               $productsNoPagination = $productsQuery->get();
               $min = $productsNoPagination->min('price');
@@ -297,7 +303,7 @@ class FrontEndController extends Controller
             }
             $products = $productsQuery->take(9)->get();
         }
-        return view('categoryproduct', compact('min', 'max', 'products','category','sort', 'marks', 'mark_id'));
+        return view('categoryproduct', compact('min', 'max', 'products','category','sort', 'marks', 'mark_id', 'categorisation'));
     }
 
     //Load More Category Products
@@ -314,6 +320,11 @@ class FrontEndController extends Controller
         $mark_id = Input::get('mark_id');
         if ($mark_id != "" && $mark_id !== 'all') {
           $where_array[] = ['mark_id', $mark_id];
+        }
+
+        $categorisation = Input::get('categorisation');
+        if ($categorisation != "" && $categorisation !== 'all') {
+          $where_array[] = ['categorisation', $categorisation];
         }
 
         $category = Category::where('slug',$slug)->first();
