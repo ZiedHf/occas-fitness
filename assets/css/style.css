@@ -1888,3 +1888,8 @@ img.img-mark{
   max-height: 50px;
   max-width: 100px;
 }
+
+/* Footer */
+.product-section a, .product-section a:visited {
+  color: #fff;
+}

@@ -160,48 +160,30 @@
     </div>
 
 <div class="row">
-    <div class="col-md-3 about">
-        <h4 style=" text-decoration: underline;">A PROPOS DE NOUS</h4>
-        <p>{!! $settings[0]->about !!}</p>
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3 col-sm-3 col-sm-offset-0 col-xs-8 col-xs-offset-2">
+          <img alt="" src="{{ URL::asset('assets/images/logo')}}/footer-LogoOccas Fitness.png">
+        </div>
+        <div class="col-md-12 col-sm-9 col-xs-12">
+          Street Address: {{$settings[0]->address}}<br />
+          Phone: {{$settings[0]->phone}}<br />
+          Fax:  {{$settings[0]->fax}}<br />
+          Email: {{$settings[0]->email}}
+        </div>
+      </div>
     </div>
-    <!-- <div class="col-md-3 address">
-        <h4 style=" text-decoration: underline;">PRODUITS</h4>
-        <ul>
-       
-            </ul>
-    </div> -->
-    <div class="col-md-3">
-        <h4 style=" text-decoration: underline;">AIDE</h4>
-        <p>{!! $settings[0]->about !!}</p>
-        <!-- <div class="socicon text-center">
-                        @if($sociallinks[0]->f_status == "enable")
-                            <a href="{{$sociallinks[0]->facebook}}" class="facebook"><i class="fa fa-facebook"></i></a>
-                        @endif
-                        @if($sociallinks[0]->t_status == "enable")
-                            <a href="{{$sociallinks[0]->twiter}}" class="twitter"><i class="fa fa-twitter"></i></a>
-                        @endif
-                        @if($sociallinks[0]->g_status == "enable")
-                            <a href="{{$sociallinks[0]->g_plus}}" class="google"><i class="fa fa-google"></i></a>
-                        @endif
-                        @if($sociallinks[0]->link_status == "enable")
-                            <a href="{{$sociallinks[0]->linkedin}}" class="linkedin"><i class="fa fa-linkedin"></i></a>
-                        @endif
-                    </div> -->
-    </div>
-    <div class="col-md-3">
+    <div class="col-md-4 product-section hidden-sm hidden-xs">
         <h4 style=" text-decoration: underline;">Latest Products</h4>
         <ul>
           @foreach($productsFooter as $product)
             <li><a href="{{ url('/product/'.$product->id.'/'.str_replace(' ', '-', strtolower($product->title))) }}">{{$product->title}}</a></li>
           @endforeach
         </ul>
-    </div> 
-    <div class="col-md-3 ">
-        <p><img style="width:50%" alt="" src="{{ URL::asset('assets/images/logo')}}/footer-LogoOccas Fitness.png"></p>
-        <p>Street Address: {{$settings[0]->address}}</p>
-        <p>Phone: {{$settings[0]->phone}}</p>
-        <p>Fax:  {{$settings[0]->fax}}</p>
-        <p>Email: {{$settings[0]->email}}</p>
+    </div>
+    <div class="col-md-4 hidden-sm hidden-xs">
+        <h4 style=" text-decoration: underline;">A PROPOS DE NOUS</h4>
+        <p>{!! $settings[0]->about !!}</p>
     </div>
 </div>
       
